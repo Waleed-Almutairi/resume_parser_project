@@ -10,8 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: todo
-    // TODO: implement build
+
     throw UnimplementedError();
   }
 
