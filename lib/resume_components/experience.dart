@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 class Experience {
   late String _jobTitle;
   late String _jobDescription;
@@ -5,8 +7,7 @@ class Experience {
   late String _organization;
 
 // constructor
-  Experience(
-      this._jobTitle, this._jobDescription, this._timeLine, this._organization);
+  Experience(this._jobTitle, this._jobDescription, this._timeLine, this._organization); 
 // create setters and getters
   setJobTitle(String jobTitle) {
     this._jobTitle = jobTitle;

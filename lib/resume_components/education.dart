@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 class Education {
   late String _organization;
   late String _degree;
