@@ -7,7 +7,7 @@ class Education {
   // constructor
   Education(this._organization, this._degree, this._grade, this._gradeMetric);
 
-  // creat setters and getters
+  // create setters and getters
   setGrade(String grade) {
       this._grade = int.parse(grade);
   }
