@@ -21,4 +21,6 @@ class Skill{
   getSkillType() {
     return this._type;
   }
+
+  static fromJson(i) {}
 }
