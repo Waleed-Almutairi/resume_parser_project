@@ -7,8 +7,29 @@ class Education {
   late String _gradeMetric;
 
   // constructor
-  Education(this._organization, this._degree, this._grade, this._gradeMetric);
+  Education({
+    required String organization,
+    required String degree,
+    required int grade,
+    required String gradeMetric,
+  }) {
+    this._organization = organization;
+    this._degree = degree;
+    this._grade = grade;
+    this._gradeMetric = gradeMetric;
+  }
+  
 
+  //fromJson
+  static fromJson(Map<String, dynamic> parsedJson) {
+    return Education(
+      organization: parsedJson['Organization'],
+      degree: parsedJson['Degree'],
+      grade: parsedJson['Grade'],
+      gradeMetric: parsedJson['GradeMetric'],
+    );
+  }
+  
   // create setters and getters
   setGrade(String grade) {
       this._grade = int.parse(grade);
@@ -40,5 +61,10 @@ class Education {
 
   getDegree() {
     return this._degree;
+  }
+  
+  @override
+  String toString() {
+    return 'Education{_organization: $_organization, _degree: $_degree, _grade: $_grade, _gradeMetric: $_gradeMetric}';
   }
 }
