@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resume_parser_project/resume.dart';
+import 'package:resume_parser_project/resume_components/experience.dart';
+import 'package:resume_parser_project/resume_components/experience_collection.dart';
 import 'package:resume_parser_project/resume_components/profile.dart';
 import 'package:resume_parser_project/widgets/custom_button.dart';
 
@@ -17,14 +19,14 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  Future<dynamic> readJson(String id) async {
+  Future<ExperienceCollection> readJson(String id) async {
     final String response =
         await rootBundle.loadString('lib/assets/CV Sample # 0$id.json');
-    final data = await json.decode(response);
-    Profile profile = Profile.fromJson(data["Value"]["Data"]);
+    final data = await json.decode(response)["Value"]["Data"];
+    ExperienceCollection workExperience =
+        ExperienceCollection.fromJson(data["WorkExperience"]);
     print("Reading JSON file for candidate $id...");
-    print((profile).toString());
-    return profile;
+    return workExperience;
   }
 
   @override
@@ -49,7 +51,7 @@ class _AppState extends State<App> {
                     'Candidate 1',
                     AppColors.background,
                     AppColors.text,
-                    () {
+                    () async {
                       readJson('1');
                     },
                   ),
@@ -57,7 +59,7 @@ class _AppState extends State<App> {
                     'Candidate 2',
                     AppColors.background,
                     AppColors.text,
-                    () {
+                    () async {
                       readJson('2');
                     },
                   ),
@@ -65,7 +67,7 @@ class _AppState extends State<App> {
                     'Candidate 3',
                     AppColors.background,
                     AppColors.text,
-                    () {
+                    () async {
                       readJson('3');
                     },
                   ),

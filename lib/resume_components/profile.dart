@@ -31,7 +31,11 @@ class Profile {
           : -1,
       emails: _parseList(parsedJson["Emails"]),
       name: parsedJson["Name"]["Raw"],
-      phoneNumbers: _parseList(parsedJson["PhoneNumbers"]),
+      // phoneNumber could be null
+
+      phoneNumbers: parsedJson["PhoneNumbers"] != null
+          ? _parseList(parsedJson["PhoneNumbers"])
+          : [],
       profession: parsedJson['Profession'],
     );
   }
