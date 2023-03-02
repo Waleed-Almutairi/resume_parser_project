@@ -52,7 +52,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      readJson('1');
+                      ExperienceCollection e = await readJson('1');
+                      print(e.getExperience()[0].getTimeLine());
                     },
                   ),
                   candidateButton(
@@ -60,7 +61,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      readJson('2');
+                      ExperienceCollection e = await readJson('2');
+                      print(e.getExperience()[0].getTimeLine());
                     },
                   ),
                   candidateButton(
@@ -68,7 +70,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      readJson('3');
+                      ExperienceCollection e = await readJson('3');
+                      print(e.getExperience());
                     },
                   ),
                 ],

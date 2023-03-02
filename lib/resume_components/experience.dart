@@ -3,19 +3,19 @@
 class Experience {
   late String _jobTitle;
   late String _jobDescription;
-  late String _timeLine = "unknown";
+  late String _timeLine;
   late String _organization;
 
 // constructor
   Experience({
     required String jobTitle,
     required String jobDescription,
-    // required String timeLine,
+    required String timeLine,
     required String organization,
   }) {
     this._jobTitle = jobTitle;
     this._jobDescription = jobDescription;
-    // this._timeLine = timeLine;
+    this._timeLine = timeLine;
     this._organization = organization;
   }
 
@@ -24,19 +24,31 @@ class Experience {
     return Experience(
       jobTitle: parsedJson['JobTitle'] ?? "Missing Job Title",
       jobDescription: parsedJson['JobDescription'] ?? "Missing Job Description",
-      // timeLine: parsedJson["Dates"]?['StartDate']?? || parsedJson["Dates"]?['EndDate'] ?? _findTimeLine(parsedJson["Dates"]['StartDate'], parsedJson["Dates"]['EndDate']):
-      //     "Missing Time Line",
+      timeLine: _findTimeLine(
+          parsedJson["Dates"]["StartDate"], parsedJson["Dates"]["EndDate"]),
       organization: parsedJson['Organization'] ?? "Missing Organization",
     );
   }
 
   // calculate time difference for timeline, such as
   //"StartDate": "2021-06-01T00:00:00+00:00", "EndDate": "2022-12-17T00:00:00+00:00" as parameters
-  static _findTimeLine(String startDate, String endDate) {
-    DateTime start = DateTime.parse(startDate);
-    DateTime end = DateTime.parse(endDate);
+  static String _findTimeLine(String? startDate, String? endDate) {
+    if (startDate == null || endDate == null) {
+      return "unknown";
+    }
+    DateTime start;
+    DateTime end;
+    try {
+      start = DateTime.parse(startDate);
+      end = DateTime.parse(endDate);
+    } catch (e) {
+      return "known";
+    }
     Duration difference = end.difference(start);
-    return "${difference.inDays.toString()} days";
+    int months = difference.inDays ~/ 30;
+    int years = months ~/ 12;
+    months = months % 12;
+    return "$years years $months months";
   }
 
 // create setters and getters
