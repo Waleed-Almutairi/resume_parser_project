@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resume_parser_project/resume.dart';
+import 'package:resume_parser_project/resume_components/education.dart';
+import 'package:resume_parser_project/resume_components/education_collection.dart';
 import 'package:resume_parser_project/resume_components/experience.dart';
 import 'package:resume_parser_project/resume_components/experience_collection.dart';
 import 'package:resume_parser_project/resume_components/profile.dart';
@@ -19,12 +21,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  Future<ExperienceCollection> readJson(String id) async {
+  Future<EducationCollection> readJson(String id) async {
     final String response =
         await rootBundle.loadString('lib/assets/CV Sample # 0$id.json');
     final data = await json.decode(response)["Value"]["Data"];
-    ExperienceCollection workExperience =
-        ExperienceCollection.fromJson(data["WorkExperience"]);
+    EducationCollection workExperience =
+        EducationCollection.fromJson(data["Education"]);
     print("Reading JSON file for candidate $id...");
     return workExperience;
   }
@@ -52,8 +54,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      ExperienceCollection e = await readJson('1');
-                      print(e.getExperience()[0].getTimeLine());
+                      EducationCollection e = await readJson('1');
+                      print(e.toString());
                     },
                   ),
                   candidateButton(
@@ -61,8 +63,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      ExperienceCollection e = await readJson('2');
-                      print(e.getExperience()[0].getTimeLine());
+                      EducationCollection e = await readJson('2');
+                      print(e.toString());
                     },
                   ),
                   candidateButton(
@@ -70,8 +72,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      ExperienceCollection e = await readJson('3');
-                      print(e.getExperience());
+                      EducationCollection e = await readJson('3');
+                      print(e.toString());
                     },
                   ),
                 ],
