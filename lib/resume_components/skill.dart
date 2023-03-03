@@ -16,8 +16,8 @@ class Skill {
   //from json
   static fromJson(Map<String, dynamic> parsedJson) {
     return Skill(
-      skillName: parsedJson['Skills']["Name"],
-      type: parsedJson["Skills"]['Type'],
+      skillName: parsedJson["Name"],
+      type: parsedJson['Type'],
     );
   }
 
@@ -37,6 +37,7 @@ class Skill {
   getSkillType() {
     return this._type;
   }
+
   @override
   String toString() {
     return this._skillName;

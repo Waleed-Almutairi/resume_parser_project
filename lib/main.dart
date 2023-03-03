@@ -7,6 +7,8 @@ import 'package:resume_parser_project/resume_components/education_collection.dar
 import 'package:resume_parser_project/resume_components/experience.dart';
 import 'package:resume_parser_project/resume_components/experience_collection.dart';
 import 'package:resume_parser_project/resume_components/profile.dart';
+import 'package:resume_parser_project/resume_components/skill.dart';
+import 'package:resume_parser_project/resume_components/skills_collection.dart';
 import 'package:resume_parser_project/widgets/custom_button.dart';
 
 void main() {
@@ -21,14 +23,16 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  Future<EducationCollection> readJson(String id) async {
+  Future<SkillsCollection> readJson(String id) async {
     final String response =
         await rootBundle.loadString('lib/assets/CV Sample # 0$id.json');
     final data = await json.decode(response)["Value"]["Data"];
-    EducationCollection workExperience =
-        EducationCollection.fromJson(data["Education"]);
+    // show type of data
+    print(data["Skills"].runtimeType);
+    SkillsCollection skills = SkillsCollection.fromJson(data);
     print("Reading JSON file for candidate $id...");
-    return workExperience;
+    print(skills.toString());
+    return skills;
   }
 
   @override
@@ -54,8 +58,8 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      EducationCollection e = await readJson('1');
-                      print(e.toString());
+                      SkillsCollection e = await readJson('1');
+                      print(e.getSkills( ).toString());
                     },
                   ),
                   candidateButton(
@@ -63,7 +67,7 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      EducationCollection e = await readJson('2');
+                      SkillsCollection e = await readJson('2');
                       print(e.toString());
                     },
                   ),
@@ -72,7 +76,7 @@ class _AppState extends State<App> {
                     AppColors.background,
                     AppColors.text,
                     () async {
-                      EducationCollection e = await readJson('3');
+                      SkillsCollection e = await readJson('3');
                       print(e.toString());
                     },
                   ),
