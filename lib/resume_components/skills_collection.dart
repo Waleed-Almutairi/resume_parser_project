@@ -27,6 +27,7 @@ class SkillsCollection {
     return this._skills;
   }
 
+  // parse list<skill> from json
   static List<Skill> _parseList(List<dynamic> list) {
     List<Skill> newList = [];
     for (var item in list) {

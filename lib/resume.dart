@@ -4,22 +4,24 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:resume_parser_project/resume_components/education.dart';
+import 'package:resume_parser_project/resume_components/education_collection.dart';
 import 'package:resume_parser_project/resume_components/experience.dart';
+import 'package:resume_parser_project/resume_components/experience_collection.dart';
 import 'package:resume_parser_project/resume_components/profile.dart';
 import 'package:resume_parser_project/resume_components/skills_collection.dart';
 
 class Resume {
   late Profile _profile;
-  late Experience _workExperience;
+  late ExperienceCollection _workExperience;
   late SkillsCollection _skills;
-  late Education _education;
+  late EducationCollection _education;
   late List<String> _certificates;
   // constructor
   Resume({
     required Profile profile,
-    required Experience workExperience,
+    required ExperienceCollection workExperience,
     required SkillsCollection skills,
-    required Education education,
+    required EducationCollection education,
     required List<String> certificates,
   }) {
     this._profile = profile;
@@ -30,11 +32,13 @@ class Resume {
   }
   // fromJson
   static fromJson(Map<String, dynamic> parsedJson) {
+    print("IN RESUME FROM JSON");
     return Resume(
       profile: Profile.fromJson(parsedJson),
-      workExperience: Experience.fromJson(parsedJson['WorkExperience']),
-      skills: SkillsCollection.fromJson(parsedJson['Skills']),
-      education: Education.fromJson(parsedJson['Education']),
+      workExperience:
+          ExperienceCollection.fromJson(parsedJson['WorkExperience']),
+      skills: SkillsCollection.fromJson(parsedJson),
+      education: EducationCollection.fromJson(parsedJson['Education']),
       certificates: _parseList(parsedJson['Certifications']),
     );
   }
@@ -53,7 +57,7 @@ class Resume {
     this._profile = profile;
   }
 
-  setWorkExperience(Experience workExperience) {
+  setWorkExperience(ExperienceCollection workExperience) {
     this._workExperience = workExperience;
   }
 
@@ -61,7 +65,7 @@ class Resume {
     this._skills = skills;
   }
 
-  setEducation(Education education) {
+  setEducation(EducationCollection education) {
     this._education = education;
   }
 

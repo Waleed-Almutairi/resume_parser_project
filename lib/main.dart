@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resume_parser_project/resume.dart';
+import 'package:resume_parser_project/resume_components/experience.dart';
+import 'package:resume_parser_project/resume_components/experience_collection.dart';
+import 'package:resume_parser_project/resume_components/profile.dart';
 import 'package:resume_parser_project/widgets/custom_button.dart';
 
 void main() {
@@ -28,7 +31,6 @@ class _AppState extends State<App> {
         await File('lib/assets/CV Sample # 0$id.json').readAsString();
     // print(response);
     final data = json.decode(response)["Value"]["Data"] as Map<String, dynamic>;
-    print("Loaded resume $id");
     Resume res = Resume.fromJson(data);
     print("Created resume $id");
     return res;
@@ -55,15 +57,11 @@ class _AppState extends State<App> {
               future: loadResumes(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasData) {
-                    return candidateButton(
-                        name: resume1.getProfile().getName(),
-                        color: AppColors.background,
-                        textColor: AppColors.text,
-                        onPressed: () {});
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
+                  return candidateButton(
+                      name: resume1.getProfile().getName(),
+                      color: AppColors.background,
+                      textColor: AppColors.text,
+                      onPressed: () {});
                 } else {
                   return const CircularProgressIndicator();
                 }

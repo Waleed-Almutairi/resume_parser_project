@@ -13,12 +13,11 @@ class ExperienceCollection {
 
   // fromJson
   static fromJson(List<dynamic> parsedJson) {
-    List<Experience> experience = <Experience>[];
-    experience = _parseList(parsedJson); 
     return ExperienceCollection(
-      experience: experience,
+      experience: _parseList(parsedJson),
     );
   }
+
   // parse list<experience> from json
   static List<Experience> _parseList(List<dynamic> list) {
     List<Experience> newList = [];
@@ -35,5 +34,10 @@ class ExperienceCollection {
 
   getExperience() {
     return this._experience;
+  }
+
+  @override
+  String toString() {
+    return 'experience: $_experience';
   }
 }
