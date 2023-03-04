@@ -6,11 +6,11 @@ Widget candidateButton(
     required Color textColor,
     required void onPressed}) {
   return Container(
-    width: 150,
+    width: 230,
     height: 50,
     decoration: BoxDecoration(
       color: color,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(20),
     ),
     child: TextButton(
       onPressed: () {

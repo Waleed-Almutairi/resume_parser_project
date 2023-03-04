@@ -6,6 +6,7 @@ import 'package:resume_parser_project/resume.dart';
 import 'package:resume_parser_project/resume_components/experience.dart';
 import 'package:resume_parser_project/resume_components/experience_collection.dart';
 import 'package:resume_parser_project/resume_components/profile.dart';
+import 'package:resume_parser_project/widgets/candidate_info.dart';
 import 'package:resume_parser_project/widgets/custom_button.dart';
 
 void main() {
@@ -37,12 +38,12 @@ class _AppState extends State<App> {
   }
 
   Future<void> loadResumes() async {
-    print("Loading resumes");
+    // print("Loading resumes");
     // Use the readJson function to create the Resume objects
     resume1 = await readJson("1");
     resume2 = await readJson("2");
     resume3 = await readJson("3");
-    print("Failed to load resumes");
+    // print("Failed to load resumes");
   }
 
   @override
@@ -57,11 +58,36 @@ class _AppState extends State<App> {
               future: loadResumes(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return candidateButton(
-                      name: resume1.getProfile().getName(),
-                      color: AppColors.background,
-                      textColor: AppColors.text,
-                      onPressed: () {});
+                  return Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        
+                        children: [
+                          candidateButton(
+                              name: resume1.getProfile().getName(),
+                              color: AppColors.background,
+                              textColor: AppColors.text,
+                              onPressed: () {}),
+                          candidateButton(
+                              name: resume2.getProfile().getName(),
+                              color: AppColors.background,
+                              textColor: AppColors.text,
+                              onPressed: () {
+                                
+                              }),
+                          candidateButton(
+                              name: resume3.getProfile().getName(),
+                              color: AppColors.background,
+                              textColor: AppColors.text,
+                              onPressed: () {}),
+                        ],
+                      ),
+                      const SizedBox(height: 200),
+                      candidateInfo(resume: resume1)
+                    ],
+                  );
                 } else {
                   return const CircularProgressIndicator();
                 }
