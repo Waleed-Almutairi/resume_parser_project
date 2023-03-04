@@ -25,6 +25,7 @@ class Profile {
   }
   // fromJson
   static fromJson(Map<String, dynamic> parsedJson) {
+    print("IN PROFILE FROM JSON");
     return Profile(
       age: parsedJson["DateOfBirth"] != null
           ? _convertBdateToAge(parsedJson["DateOfBirth"])

@@ -12,10 +12,12 @@ class SkillsCollection {
   }
   // fromJson
   static fromJson(Map<String, dynamic> parsedJson) {
+    print("IN SKILLS COLLECTION FROM JSON");
     return SkillsCollection(
       skills: _parseList(parsedJson['Skills']),
     );
   }
+
   // setters and getters
   setSkills(List<Skill> skills) {
     this._skills = skills;
@@ -32,6 +34,7 @@ class SkillsCollection {
     }
     return newList;
   }
+
   @override
   String toString() {
     return 'skills: $_skills}';

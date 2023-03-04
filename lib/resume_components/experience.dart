@@ -21,6 +21,7 @@ class Experience {
 
   //from json
   static fromJson(Map<String, dynamic> parsedJson) {
+    print("IN EXPERIENCE FROM JSON");
     return Experience(
       jobTitle: parsedJson['JobTitle'] ?? "Missing Job Title",
       jobDescription: parsedJson['JobDescription'] ?? "Missing Job Description",

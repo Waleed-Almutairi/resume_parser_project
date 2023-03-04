@@ -21,6 +21,7 @@ class Education {
 
   //fromJson
   static fromJson(Map<String, dynamic> parsedJson) {
+    print("IN EDUCATION FROM JSON");
     double grade;
     try {
       grade = double.parse(parsedJson['Grade']['Value'] ?? '0');

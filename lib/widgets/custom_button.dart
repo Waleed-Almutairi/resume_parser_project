@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 Widget candidateButton(
-    String text, Color color, Color textColor, VoidCallback onPressed) {
+    {required String name,
+    required Color color,
+    required Color textColor,
+    required void onPressed}) {
   return Container(
     width: 150,
     height: 50,
@@ -10,10 +13,12 @@ Widget candidateButton(
       borderRadius: BorderRadius.circular(10),
     ),
     child: TextButton(
-      onPressed: onPressed,
+      onPressed: () {
+        print("in button");
+      },
       child: Center(
         child: Text(
-          text,
+          name,
           style: TextStyle(
             color: textColor,
             fontSize: 20,
